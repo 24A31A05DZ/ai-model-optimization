@@ -1,4 +1,60 @@
 (function () {
+  "use strict";
+
+  // ——— Nav toggle (mobile) ———
+  const navToggle = document.getElementById("nav-toggle");
+  const navLinks = document.querySelector(".nav-links");
+
+  navToggle?.addEventListener("click", function () {
+    navLinks?.classList.toggle("open");
+  });
+
+  document.querySelectorAll(".nav-links a").forEach(function (link) {
+    link.addEventListener("click", function () {
+      navLinks?.classList.remove("open");
+    });
+  });
+
+  // ——— Navbar scroll effect ———
+  const navbar = document.getElementById("navbar");
+  function onScroll() {
+    if (window.scrollY > 20) navbar?.classList.add("scrolled");
+    else navbar?.classList.remove("scrolled");
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  // ——— Tabs (Solution section) ———
+  const tabs = document.querySelectorAll(".tab");
+  const tabContents = document.querySelectorAll(".tab-content");
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      const target = this.getAttribute("data-tab");
+      tabs.forEach(function (t) { t.classList.remove("active"); });
+      tabContents.forEach(function (c) { c.classList.remove("active"); });
+      this.classList.add("active");
+      const content = document.getElementById(target);
+      if (content) content.classList.add("active");
+    });
+  });
+
+  // ——— Reveal on scroll ———
+  const revealEls = document.querySelectorAll(".reveal");
+  const observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+      });
+    },
+    { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+  );
+
+  revealEls.forEach(function (el) {
+    observer.observe(el);
+  });
+
+  // ——— Optimization demo ———
   const runBtn = document.getElementById("run-btn");
   const resetBtn = document.getElementById("reset-btn");
   const optimizationSlider = document.getElementById("optimization-level");
@@ -17,22 +73,6 @@
     if (n >= 1e6) return (n / 1e6).toFixed(1) + "M";
     if (n >= 1e3) return (n / 1e3).toFixed(0) + "K";
     return String(n);
-  }
-
-  function animateValue(el, target, suffix = "", duration = 1200) {
-    const start = parseInt(el.textContent.replace(/\D/g, "")) || 0;
-    const startTime = performance.now();
-
-    function tick(now) {
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 4);
-      const current = Math.round(start + (target - start) * eased);
-      el.textContent = suffix ? current + suffix : formatNumber(current);
-      if (progress < 1) requestAnimationFrame(tick);
-    }
-
-    requestAnimationFrame(tick);
   }
 
   optimizationSlider?.addEventListener("input", function () {
@@ -105,6 +145,4 @@
     runBtn.classList.remove("hidden");
     placeholderEl.classList.remove("hidden");
   });
-
-  runBtn.disabled = false;
 })();

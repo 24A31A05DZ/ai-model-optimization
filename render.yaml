@@ -1,0 +1,8 @@
+# Render Blueprint - Green AI Optimizer
+# https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: green-ai-optimizer
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn backend.app:app --host 0.0.0.0 --port $PORT

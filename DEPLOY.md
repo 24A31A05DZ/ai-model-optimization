@@ -1,78 +1,53 @@
-# Green AI Optimizer — Railway Deployment
+# Green AI Optimizer — Deployment Guide
 
 ## Project Structure
 
 ```
 smart-ai-eco/
-├── backend/
-│   └── app.py          # FastAPI app (serves frontend + /optimize API)
 ├── frontend/
 │   ├── index.html
 │   ├── styles.css
 │   ├── app.js
 │   └── hero-branding.png
-├── requirements.txt    # fastapi, uvicorn (no torch)
-├── Procfile
-├── nixpacks.toml       # Forces Python build
-├── runtime.txt         # python-3.11
-└── railway.toml        # Railway config
+├── backend/
+│   └── app.py
+├── requirements.txt
+├── render.yaml       # Render deployment config
+├── Procfile          # Railway / generic
+└── DEPLOY.md
 ```
 
-## Step-by-Step Redeploy on Railway
-
-### 1. Commit and push changes
+## Run Locally
 
 ```bash
-git add .
-git status   # Verify no package.json, node_modules
-git commit -m "Convert to pure Python FastAPI deployment"
-git push origin main
-```
-
-### 2. In Railway dashboard
-
-- Open your project
-- Go to **Settings** → **Build**
-- Ensure **Root Directory** is `.` (project root)
-- **Builder**: Nixpacks (default)
-- **Build Command**: (leave empty — Nixpacks uses `nixpacks.toml`)
-- **Start Command**: `uvicorn backend.app:app --host 0.0.0.0 --port $PORT`
-
-### 3. Environment variables
-
-- `PORT` is set by Railway automatically — no action needed
-
-### 4. Redeploy
-
-- Click **Deploy** or push to trigger a new build
-- Railway will detect `requirements.txt` and `nixpacks.toml` → Python build
-- No Caddy or Node — only FastAPI serves the app
-
-### 5. Verify
-
-- Visit your Railway URL
-- You should see the Green AI Optimizer hero and demo
-- Click **Run Optimization** — it should fetch `/optimize` and display results
-
----
-
-## Local run
-
-```bash
-cd smart-ai-eco
 pip install -r requirements.txt
-uvicorn backend.app:app --reload --port 8000
+uvicorn backend.app:app --host 0.0.0.0 --port 10000
 ```
 
-Then open http://localhost:8000
+Then open http://localhost:10000
 
----
+## Deploy on Render
 
-## Troubleshooting
+### Option A: Using render.yaml (Blueprint)
 
-| Issue | Fix |
-|-------|-----|
-| 500 error / Caddy | Ensure `package.json` is deleted and `nixpacks.toml` exists |
-| Module not found | Run from project root; `backend.app` assumes root cwd |
-| Static files 404 | Confirm `frontend/` has index.html, styles.css, app.js |
-| `node_modules` in deploy | Add `node_modules` to `.gitignore` (already done) |
+1. Push your code to GitHub.
+2. In [Render Dashboard](https://dashboard.render.com), click **New** → **Blueprint**.
+3. Connect your repo and select it.
+4. Render will detect `render.yaml` and create the web service.
+5. Deploy.
+
+### Option B: Manual Setup
+
+1. Push code to GitHub.
+2. In Render, click **New** → **Web Service**.
+3. Connect your repo.
+4. Configure:
+   - **Runtime**: Python 3
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `uvicorn backend.app:app --host 0.0.0.0 --port $PORT`
+5. Click **Create Web Service**.
+
+### Verify
+
+- Visit your Render URL (e.g. `https://green-ai-optimizer.onrender.com`).
+- Click **Run Optimization** in the demo — it should fetch `/optimize` and show results.
