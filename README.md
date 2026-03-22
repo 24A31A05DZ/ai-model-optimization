@@ -17,3 +17,9 @@ This project deploys a FastAPI backend for AI Model Optimization with a dashboar
 ```bash
 pip install -r backend/requirements.txt
 uvicorn backend.app:app --host 0.0.0.0 --port 10000
+
+
+
+## link to access website
+
+https://ai-model-optimization-1.onrender.com
