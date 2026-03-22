@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Leaf, Sparkles } from "lucide-react";
-import heroIllustration from "@/assets/hero-illustration.png";
 
 const ease = [0.22, 1, 0.36, 1];
 
@@ -98,8 +97,8 @@ const HeroSection = ({ onRunDemo }: { onRunDemo: () => void }) => {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-primary rounded-3xl blur-3xl opacity-[0.06] scale-110" />
               <img
-                src={heroIllustration}
-                alt="AI and sustainability abstract illustration"
+                src="/hero-branding.png"
+                alt="AI and sustainability abstract illustration — neural networks, circuitry, and nature"
                 className="w-full max-w-md animate-float relative z-10"
               />
             </div>

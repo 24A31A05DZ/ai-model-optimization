@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Leaf, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const links = [
   { label: "Problem", href: "#problem" },
@@ -32,9 +32,11 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-6 lg:px-8 flex items-center justify-between h-[4.25rem]">
         <a href="#" className="flex items-center gap-2.5 font-bold text-lg tracking-tight">
-          <div className="w-8 h-8 rounded-lg bg-gradient-primary flex items-center justify-center shadow-glow">
-            <Leaf className="w-4 h-4 text-primary-foreground" />
-          </div>
+          <img
+            src="/hero-branding.png"
+            alt="Green AI Optimizer"
+            className="w-10 h-10 object-contain"
+          />
           Green AI Optimizer
         </a>
 

@@ -45,8 +45,13 @@
     --sidebar-border: 210 18% 90%;
     --sidebar-ring: 125 46% 33%;
 
+    /* Green AI palette from branding (Mint, Emerald, Forest) */
+    --green-mint: 120 100% 80%;
+    --green-emerald: 140 52% 55%;
+    --green-forest: 120 61% 34%;
+
     /* Premium tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(140 45% 32%), hsl(160 50% 36%));
+    --gradient-primary: linear-gradient(135deg, hsl(120 61% 34%), hsl(140 52% 55%));
     --gradient-subtle: linear-gradient(160deg, hsl(220 20% 97%), hsl(130 18% 95%));
     --gradient-hero: linear-gradient(170deg, hsl(220 20% 98%) 0%, hsl(130 22% 94%) 50%, hsl(220 20% 97%) 100%);
     --gradient-glass: linear-gradient(135deg, hsl(0 0% 100% / 0.9), hsl(0 0% 100% / 0.7));
@@ -54,7 +59,7 @@
     --shadow-xs: 0 1px 2px hsl(0 0% 0% / 0.03);
     --shadow-card: 0 1px 3px hsl(0 0% 0% / 0.04), 0 6px 20px hsl(0 0% 0% / 0.02);
     --shadow-card-hover: 0 8px 30px hsl(125 30% 40% / 0.08), 0 2px 8px hsl(0 0% 0% / 0.04);
-    --shadow-glow: 0 0 50px hsl(125 46% 33% / 0.1), 0 0 20px hsl(125 46% 33% / 0.06);
+    --shadow-glow: 0 0 50px hsl(140 52% 55% / 0.12), 0 0 20px hsl(140 52% 55% / 0.06);
     --shadow-premium: 0 20px 60px hsl(0 0% 0% / 0.06), 0 4px 16px hsl(0 0% 0% / 0.03);
   }
 

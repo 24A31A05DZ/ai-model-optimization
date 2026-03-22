@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Green AI Optimizer — Energy-Efficient AI</title>
+  <meta name="description" content="Make AI models energy efficient and sustainable with pruning, quantization, and distillation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <a href="/" class="logo">
+      <img src="/hero-branding.png" alt="Green AI Optimizer" class="logo-img" />
+      <span>Green AI Optimizer</span>
+    </a>
+    <a href="#demo" class="nav-cta">Try Demo</a>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <span class="badge">Sustainable AI Computing</span>
+      <h1><span class="text-gradient">Green AI</span><br />Optimizer</h1>
+      <p>Making AI Models Energy Efficient and Sustainable — reduce compute, cut carbon, and accelerate inference.</p>
+      <a href="#demo" class="btn-primary">Run Optimization Demo</a>
+    </section>
+
+    <section id="demo" class="demo-section">
+      <div class="demo-header">
+        <span class="section-label">Interactive Demo</span>
+        <h2 class="section-title">AI Optimization Dashboard</h2>
+        <p class="section-desc">Adjust parameters, run optimization, and visualize how pruning reduces model size and energy consumption.</p>
+      </div>
+
+      <div class="demo-card">
+        <div class="card-header">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="file-label">optimization_engine.py</span>
+        </div>
+
+        <div id="error-msg" class="error-msg hidden"></div>
+
+        <div class="controls">
+          <div class="control-group">
+            <label>Optimization Level</label>
+            <div class="slider-row">
+              <input type="range" id="optimization-level" min="0" max="100" value="50" />
+              <span id="optimization-value" class="value-display">50%</span>
+            </div>
+            <p class="hint">Higher = more aggressive pruning</p>
+          </div>
+          <div class="control-group">
+            <label>Model Size</label>
+            <select id="model-size">
+              <option value="small">Small</option>
+              <option value="medium" selected>Medium</option>
+              <option value="large">Large</option>
+            </select>
+            <p class="hint">Model complexity / parameter count</p>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="run-btn" class="btn-primary" disabled>
+            <span class="spinner hidden"></span>
+            <span class="btn-text">Run Optimization</span>
+          </button>
+          <button id="reset-btn" class="btn-secondary hidden">Run Again</button>
+          <div id="progress-wrap" class="progress-wrap hidden">
+            <div class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
+            <p id="progress-text">0% — Applying pruning & quantization…</p>
+          </div>
+        </div>
+
+        <div id="results" class="results hidden">
+          <h3>Results</h3>
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <span class="metric-value" id="total-params">0</span>
+              <span class="metric-label">Total Parameters</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value" id="before">0</span>
+              <span class="metric-label">Before Optimization</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value" id="after">0</span>
+              <span class="metric-label">After Optimization</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-value" id="reduction">0%</span>
+              <span class="metric-label">Percentage Reduction</span>
+            </div>
+            <div class="metric-card highlight">
+              <span class="metric-value" id="energy-saved">0%</span>
+              <span class="metric-label">Estimated Energy Saved</span>
+            </div>
+          </div>
+          <div class="energy-banner">
+            <span class="energy-icon">⚡</span>
+            <span>Estimated Energy Saved: <strong id="energy-banner-value">0%</strong></span>
+          </div>
+          <div class="chart-wrap">
+            <h4>Parameter Comparison</h4>
+            <div class="chart-bars">
+              <div class="bar-group">
+                <div id="bar-before" class="bar before"></div>
+                <span>Before</span>
+              </div>
+              <div class="bar-group">
+                <div id="bar-after" class="bar after"></div>
+                <span>After</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p id="placeholder" class="placeholder">Choose optimization level and model size, then click Run Optimization.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Green AI Optimizer — Sustainable AI Computing</p>
+  </footer>
+
+  <script src="/app.js"></script>
+</body>
+</html>
